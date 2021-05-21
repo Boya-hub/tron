@@ -11,12 +11,14 @@ CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-ma
 SOURCES += \
     gamewindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    player.cpp
 
 HEADERS += \
     gamewindow.h \
     main.h \
-    mainwindow.h
+    mainwindow.h \
+    player.h
 
 RESOURCES += \
     resources.qrc

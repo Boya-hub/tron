@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 		window.blinkText();
 		window.draw(window.getText());
 		window.display();
+		std::cout << "Je suis debug main" << std::endl;
 		if(frameNumber < MAX_FRAME_MAINWINDOW)
 			frameNumber++;
 	}
@@ -58,6 +59,7 @@ int main(int argc, char *argv[])
 
 	//Game
 	GameWindow game(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron2", ":/resources/sprite/background.jpg");
+	game.setFramerateLimit(60);
 	while(game.isOpen()){
 		while (game.pollEvent(event))
 		{
@@ -65,9 +67,34 @@ int main(int argc, char *argv[])
 				game.close();
 				return EXIT_SUCCESS;
 			}
+			//Ctrl player 1
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+				game.setDirection(1, DIRECTION_UP);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				game.setDirection(1, DIRECTION_DOWN);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+				game.setDirection(1, DIRECTION_LEFT);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+				game.setDirection(1, DIRECTION_RIGHT);
+			//Ctrl player 2
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+				game.setDirection(2, DIRECTION_UP);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+				game.setDirection(2, DIRECTION_DOWN);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+				game.setDirection(2, DIRECTION_LEFT);
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+				game.setDirection(2, DIRECTION_RIGHT);
+
 		}
+		//Display
 		game.clear();
 		game.draw(window.getBackground());
+		game.movePlayer(1);
+		game.drawPlayer(1);
+		game.movePlayer(2);
+		game.drawPlayer(2);
+		std::cout << "Je suis debug GAME" << std::endl;
 		game.display();
 	}
 	return app.exec();

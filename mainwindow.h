@@ -7,7 +7,6 @@
 #include "main.h"
 #include <vector>
 
-#define LETTER_WIDTH 10
 #define LETTER_T 1
 #define LETTER_R 2
 #define LETTER_O 3
