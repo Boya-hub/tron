@@ -6,7 +6,6 @@
 #include <QResource>
 #include "main.h"
 #include <vector>
-#include <math.h>
 
 #define LETTER_WIDTH 10
 #define LETTER_T 1
@@ -22,7 +21,6 @@ public:
 	MainWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name, QString file, QString font, QString music);
 	virtual ~MainWindow();
 
-	void setBackgroung(QString file);
 	Sprite getBackground() const {return m_sprite;};
 	std::vector<CircleShape> &getLetterT() {return m_letterT;};
 	std::vector<CircleShape> &getLetterR() {return m_letterR;};

@@ -100,14 +100,6 @@ MainWindow::~MainWindow()
 	// destructor
 }
 
-void MainWindow::setBackgroung(QString file)
-{
-	QResource resource_file(file);
-	m_texture.loadFromMemory(resource_file.data(), resource_file.size());
-	m_sprite.setTexture(m_texture);
-	m_sprite.scale(1.5, 1.5);
-}
-
 void MainWindow::addLetter(std::vector<CircleShape>& vect, const double x, const double y)
 {
 	CircleShape circle(vect.back());

@@ -9,10 +9,12 @@ CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-main
 CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-main-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
 
 SOURCES += \
+    gamewindow.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    gamewindow.h \
     main.h \
     mainwindow.h
 
