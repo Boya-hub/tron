@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/sprite/background.jpg</file>
+        <file>resources/fonts/Sunday Best.otf</file>
+        <file>resources/fonts/Sunday Best.ttf</file>
+        <file>resources/musics/Son-of-Flynn.wav</file>
+    </qresource>
+</RCC>

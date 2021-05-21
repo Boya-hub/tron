@@ -1,8 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define FENETRE_LENGHT 800
-#define FENETRE_WIDTH 600
+#define FENETRE_LENGHT 900
+#define FENETRE_WIDTH 720
+#define MAX_FRAME_MAINWINDOW 100
 
 
 #endif // MAIN_H
