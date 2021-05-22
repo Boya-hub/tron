@@ -13,8 +13,10 @@ int main(int argc, char *argv[])
 	QApplication app(argc, argv);
 	unsigned long long  lli = 0;
 	unsigned long long frameNumber = 0;
+	unsigned int winner = 0;
 
-	MainWindow window(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron", ":/resources/sprite/background.jpg", ":/resources/fonts/Sunday Best.ttf", ":/resources/musics/Son-of-Flynn.wav");
+	MainWindow window(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron", ":/resources/sprite/background.jpg", \
+					  ":/resources/fonts/Sunday Best.ttf", ":/resources/musics/Son-of-Flynn.wav");
 	window.setFramerateLimit(100);
 	window.setVerticalSyncEnabled(true);
 
@@ -51,14 +53,14 @@ int main(int argc, char *argv[])
 		window.blinkText();
 		window.draw(window.getText());
 		window.display();
-		std::cout << "Je suis debug main" << std::endl;
 		if(frameNumber < MAX_FRAME_MAINWINDOW)
 			frameNumber++;
 	}
 
 
 	//Game
-	GameWindow game(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron2", ":/resources/sprite/background.jpg");
+	GameWindow game(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron2", ":/resources/sprite/background.jpg", \
+					":/resources/fonts/Sunday Best.ttf");
 	game.setFramerateLimit(60);
 	while(game.isOpen()){
 		while (game.pollEvent(event))
@@ -94,7 +96,10 @@ int main(int argc, char *argv[])
 		game.drawPlayer(1);
 		game.movePlayer(2);
 		game.drawPlayer(2);
-		std::cout << "Je suis debug GAME" << std::endl;
+		winner = game.collisionManagement();
+		if(winner){
+			game.drawWinner(winner);
+		}
 		game.display();
 	}
 	return app.exec();

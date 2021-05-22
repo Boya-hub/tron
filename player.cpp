@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(unsigned int posX, unsigned int posY, Color color):m_posX(posX), m_posY(posY),\
+Player::Player(unsigned int posX, unsigned int posY, Color color):m_startPosX(posX), m_startPosY(posY),\
   m_color(color)
 {
 	addCircle(posX, posY);
@@ -49,22 +49,22 @@ void Player::move()
 
 }
 
-void Player::setDirection(Direction direction){
+void Player::setDirection(Direction direction, bool const force){
 	switch(direction){
 	case DIRECTION_DOWN:
-		if(m_direction != DIRECTION_UP)
+		if(m_direction != DIRECTION_UP || force)
 			m_direction = direction;
 		break;
 	case DIRECTION_LEFT:
-		if(m_direction != DIRECTION_RIGHT)
+		if(m_direction != DIRECTION_RIGHT || force)
 			m_direction = direction;
 		break;
 	case DIRECTION_UP:
-		if(m_direction != DIRECTION_DOWN)
+		if(m_direction != DIRECTION_DOWN || force)
 			m_direction = direction;
 		break;
 	case DIRECTION_RIGHT:
-		if(m_direction != DIRECTION_LEFT)
+		if(m_direction != DIRECTION_LEFT || force)
 			m_direction = direction;
 		break;
 	}

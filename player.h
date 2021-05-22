@@ -20,11 +20,11 @@ public:
 	void addCircle(unsigned int posX, unsigned posY);
 	std::vector<CircleShape> &getShapes() {return shapes;};
 	void move();
-	void setDirection(Direction direction);
+	void setDirection(Direction direction, bool const force = false);
 
 private:
-	unsigned int m_posX;
-	unsigned int m_posY;
+	unsigned int m_startPosX;
+	unsigned int m_startPosY;
 	Color m_color;
 	std::vector<CircleShape> shapes;
 	Direction m_direction;
