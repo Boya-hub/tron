@@ -11,8 +11,7 @@ using namespace sf;
 class GameWindow: public RenderWindow
 {
 public:
-	GameWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name, QString file,\
-			   QString font);
+	GameWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name);
 	virtual ~GameWindow();
 	Sprite getBackground() const {return m_sprite;};
 	void drawPlayer(unsigned int const player);

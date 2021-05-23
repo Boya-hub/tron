@@ -4,5 +4,6 @@
         <file>resources/fonts/Sunday Best.otf</file>
         <file>resources/fonts/Sunday Best.ttf</file>
         <file>resources/musics/Son-of-Flynn.wav</file>
+        <file>resources/sprite/smileys-emotion-00.png</file>
     </qresource>
 </RCC>

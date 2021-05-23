@@ -3,17 +3,12 @@
 Player::Player(unsigned int posX, unsigned int posY, Color color):m_startPosX(posX), m_startPosY(posY),\
   m_color(color)
 {
-	addCircle(posX, posY);
-}
-
-
-void Player::addCircle(unsigned int posX, unsigned posY)
-{
 	CircleShape circle(LETTER_WIDTH);
 	circle.setOutlineColor(Color::Black);
 	circle.setFillColor(m_color);
-	circle.setOutlineThickness(1.2);	//TODO : Trouver une bonne epaisseur
+	circle.setOutlineThickness(1.2);
 	circle.setPosition(posX, posY);
+	m_smileyFace.setPosition(posX, posY);
 	shapes.push_back(circle);
 }
 
@@ -45,6 +40,8 @@ void Player::move()
 		circle.setPosition(pos.x, FENETRE_WIDTH);
 	if(pos.y >= FENETRE_WIDTH)
 		circle.setPosition(pos.x, 0);
+	pos = circle.getPosition();
+	m_smileyFace.setPosition(pos.x, pos.y);
 	shapes.push_back(circle);
 
 }

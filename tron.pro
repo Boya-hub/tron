@@ -12,13 +12,15 @@ SOURCES += \
     gamewindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    smileyface.cpp
 
 HEADERS += \
     gamewindow.h \
     main.h \
     mainwindow.h \
-    player.h
+    player.h \
+    smileyface.h
 
 RESOURCES += \
     resources.qrc

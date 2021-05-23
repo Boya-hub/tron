@@ -16,8 +16,7 @@ int main(int argc, char *argv[])
 	unsigned int winner = 0;
 	bool gamePause = false;
 
-	MainWindow window(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron", ":/resources/sprite/background.jpg", \
-					  ":/resources/fonts/Sunday Best.ttf", ":/resources/musics/Son-of-Flynn.wav");
+	MainWindow window(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron");
 	window.setFramerateLimit(100);
 	window.setVerticalSyncEnabled(true);
 
@@ -60,8 +59,7 @@ int main(int argc, char *argv[])
 
 
 	//Game
-	GameWindow game(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron2", ":/resources/sprite/background.jpg", \
-					":/resources/fonts/Sunday Best.ttf");
+	GameWindow game(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron2");
 	game.setFramerateLimit(60);
 	while(game.isOpen()){
 		while (game.pollEvent(event))

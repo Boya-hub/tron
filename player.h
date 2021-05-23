@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "main.h"
 #include <vector>
+#include "smileyface.h"
 
 #define VITESSE_PLAYER 4
 using namespace sf;
@@ -17,11 +18,11 @@ public:
 	Player(unsigned int posX, unsigned int posY, Color color);
 	virtual ~Player();
 
-	void addCircle(unsigned int posX, unsigned posY);
 	std::vector<CircleShape> &getShapes() {return shapes;};
 	void move();
 	void setDirection(Direction direction, bool const force = false);
 	void resetPlayer();
+	Sprite getSmiley () const {return m_smileyFace.getSprite();};
 
 private:
 	unsigned int m_startPosX;
@@ -29,6 +30,7 @@ private:
 	Color m_color;
 	std::vector<CircleShape> shapes;
 	Direction m_direction;
+	SmileyFace m_smileyFace;
 };
 
 #endif // PLAYER_H

@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(unsigned int lenght, unsigned int width, unsigned int fps,\
-			std:: string name, QString file, QString font, QString music):RenderWindow(VideoMode(lenght, width, fps), name),\
+			std:: string name):RenderWindow(VideoMode(lenght, width, fps), name),\
 			m_lenght(lenght), m_width(width)
 {
 	int i = 0;
@@ -71,13 +71,14 @@ MainWindow::MainWindow(unsigned int lenght, unsigned int width, unsigned int fps
 		addLetter(m_letterN, 0, -4);
 
 	//Backgroung
-	QResource bakcground_file(file);
+	QResource bakcground_file(":/resources/sprite/background.jpg");
 	m_texture.loadFromMemory(bakcground_file.data(), bakcground_file.size());
+	m_texture.setSmooth(true);
 	m_sprite.setTexture(m_texture);
 	m_sprite.scale(1.5, 1.5);
 
 	//Font
-	QResource font_file(font);
+	QResource font_file(":/resources/fonts/Sunday Best.ttf");
 	m_font.loadFromMemory(font_file.data(), font_file.size());
 	m_text.setFont(m_font);
 	m_text.setString("Press SPACE to play");
@@ -88,7 +89,7 @@ MainWindow::MainWindow(unsigned int lenght, unsigned int width, unsigned int fps
 	m_text.setPosition(FENETRE_LENGHT/2-145, FENETRE_WIDTH/2+175);
 
 	//Musique
-	QResource music_file(music);
+	QResource music_file(":/resources/musics/Son-of-Flynn.wav");
 	m_music.openFromMemory(music_file.data(), music_file.size());
 	m_music.setLoop(true);
 	m_music.setVolume(5);

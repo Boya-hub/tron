@@ -17,7 +17,7 @@ using namespace sf;
 class MainWindow: public RenderWindow
 {
 public:
-	MainWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name, QString file, QString font, QString music);
+	MainWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name);
 	virtual ~MainWindow();
 
 	Sprite getBackground() const {return m_sprite;};
@@ -28,6 +28,7 @@ public:
 	void addLetter(std::vector<CircleShape>& vect, const double x, const double y);
 	Text &getText() {return m_text;};
 	void blinkText();
+
 private:
 	unsigned int m_lenght;
 	unsigned int m_width;

@@ -1,19 +1,18 @@
 #include "gamewindow.h"
 
-GameWindow::GameWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name,\
-					   QString file, QString font)\
+GameWindow::GameWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name)\
 	:RenderWindow(VideoMode(lenght, width, fps), name), m_lenght(lenght), m_width(width),\
 	  m_player1(FENETRE_LENGHT/3, FENETRE_WIDTH/2, Color::Red),\
 	  m_player2((2*FENETRE_LENGHT)/3, FENETRE_WIDTH/2, Color::Blue)
 {
 	//Backgroung
-	QResource bakcground_file(file);
+	QResource bakcground_file(":/resources/sprite/background.jpg");
 	m_texture.loadFromMemory(bakcground_file.data(), bakcground_file.size());
 	m_sprite.setTexture(m_texture);
 	m_sprite.scale(1.5, 1.5);
 	draw(m_sprite);
 	//Font
-	QResource font_file(font);
+	QResource font_file(":/resources/fonts/Sunday Best.ttf");
 	m_font.loadFromMemory(font_file.data(), font_file.size());
 	m_text.setFont(m_font);
 	m_text.setString("WIN");
@@ -43,6 +42,8 @@ void GameWindow::drawPlayer(unsigned int player)
 			draw(m_player2.getShapes()[lli]);
 		}
 	}
+	draw(m_player1.getSmiley());
+	draw(m_player2.getSmiley());
 }
 
 void GameWindow::movePlayer(unsigned int const player)
