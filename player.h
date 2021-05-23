@@ -21,6 +21,7 @@ public:
 	std::vector<CircleShape> &getShapes() {return shapes;};
 	void move();
 	void setDirection(Direction direction, bool const force = false);
+	void resetPlayer();
 
 private:
 	unsigned int m_startPosX;

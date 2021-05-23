@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <QResource>
 #include "player.h"
+#include <iostream>
 
 using namespace sf;
 
@@ -19,6 +20,8 @@ public:
 	void setDirection(unsigned int const player, Direction direction);
 	unsigned int collisionManagement();
 	void drawWinner(unsigned int const player);
+	void resetGame();
+	void blinkWin();
 
 private:
 	unsigned int m_lenght;

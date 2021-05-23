@@ -70,6 +70,18 @@ void Player::setDirection(Direction direction, bool const force){
 	}
 }
 
+void Player::resetPlayer()
+{
+	std::vector<CircleShape>().swap(shapes);
+	//shapes.clear();
+	CircleShape circle(LETTER_WIDTH);
+	circle.setOutlineColor(Color::Black);
+	circle.setFillColor(m_color);
+	circle.setOutlineThickness(1.2);	//TODO : Trouver une bonne epaisseur
+	circle.setPosition(m_startPosX, m_startPosY);
+	shapes.push_back(circle);
+}
+
 Player::~Player()
 {
 	//Destructor

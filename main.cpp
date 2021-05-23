@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	unsigned long long  lli = 0;
 	unsigned long long frameNumber = 0;
 	unsigned int winner = 0;
+	bool gamePause = false;
 
 	MainWindow window(FENETRE_LENGHT, FENETRE_WIDTH, 64, "Tron", ":/resources/sprite/background.jpg", \
 					  ":/resources/fonts/Sunday Best.ttf", ":/resources/musics/Son-of-Flynn.wav");
@@ -87,18 +88,25 @@ int main(int argc, char *argv[])
 				game.setDirection(2, DIRECTION_LEFT);
 			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 				game.setDirection(2, DIRECTION_RIGHT);
-
+			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && gamePause){
+				game.resetGame();
+				gamePause = false;
+			}
 		}
 		//Display
 		game.clear();
 		game.draw(window.getBackground());
-		game.movePlayer(1);
 		game.drawPlayer(1);
-		game.movePlayer(2);
 		game.drawPlayer(2);
-		winner = game.collisionManagement();
+		if(gamePause == false){
+			game.movePlayer(1);
+			game.movePlayer(2);
+			winner = game.collisionManagement();
+		}
 		if(winner){
 			game.drawWinner(winner);
+			game.blinkWin();
+			gamePause = true;
 		}
 		game.display();
 	}

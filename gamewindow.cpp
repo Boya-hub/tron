@@ -17,8 +17,10 @@ GameWindow::GameWindow(unsigned int lenght, unsigned int width, unsigned int fps
 	m_font.loadFromMemory(font_file.data(), font_file.size());
 	m_text.setFont(m_font);
 	m_text.setString("WIN");
-	m_text.setCharacterSize(50);
-	m_text.setPosition(FENETRE_LENGHT/2-145, FENETRE_WIDTH/2+175);
+	m_text.setOutlineThickness(10);
+	m_text.setOutlineColor(Color::White);
+	m_text.setCharacterSize(75);
+	m_text.setPosition(FENETRE_LENGHT/2-80, FENETRE_WIDTH/4);
 	//Gestion joueurs
 	m_player1.setDirection(DIRECTION_RIGHT, true);
 	m_player2.setDirection(DIRECTION_LEFT, true);
@@ -61,21 +63,34 @@ void GameWindow::setDirection(unsigned int const player, Direction direction)
 
 unsigned int GameWindow::collisionManagement()
 {
-	unsigned int lli = 0;
+	int i = 0;
 	Vector2f posPlayer1, posPlayer2;
+	Vector2f posPlayer1_tmp, posPlayer2_tmp;
 	//Does last circle of player 1 collide player 2
 	posPlayer1 = m_player1.getShapes().back().getPosition();
-	for(lli = 0; lli < m_player2.getShapes().size(); lli++){
-		posPlayer2 = m_player2.getShapes()[lli].getPosition();
+	for(i = 0; i < (int)m_player2.getShapes().size(); i++){
+		posPlayer2 = m_player2.getShapes()[i].getPosition();
 		if(collide(posPlayer1, posPlayer2))
+			return 1;
+	}
+	//Does last circle of player 1 collide player 1
+	for(i = 0; i < (int)m_player1.getShapes().size() - 5; i++){
+		posPlayer1_tmp = m_player1.getShapes()[i].getPosition();
+		if(collide(posPlayer1, posPlayer1_tmp))
 			return 1;
 	}
 
 	//Does last circle of player 2 collide player 1
 	posPlayer2 = m_player2.getShapes().back().getPosition();
-	for(lli = 0; lli < m_player1.getShapes().size(); lli++){
-		posPlayer1 = m_player1.getShapes()[lli].getPosition();
+	for(i = 0; i < (int)m_player1.getShapes().size(); i++){
+		posPlayer1 = m_player1.getShapes()[i].getPosition();
 		if(collide(posPlayer1, posPlayer2))
+			return 2;
+	}
+	//Does last circle of player 2 collide player 2
+	for(i = 0; i < (int)m_player2.getShapes().size() - 5; i++){
+		posPlayer2_tmp = m_player2.getShapes()[i].getPosition();
+		if(collide(posPlayer2, posPlayer2_tmp))
 			return 2;
 	}
 	return 0;
@@ -88,6 +103,28 @@ void GameWindow::drawWinner(unsigned int const player)
 	if(player == 2)
 		m_text.setFillColor(Color::Red);
 	draw(m_text);
+}
+
+void GameWindow::resetGame()
+{
+	m_player1.resetPlayer();
+	m_player2.resetPlayer();
+	m_player1.setDirection(DIRECTION_RIGHT, true);
+	m_player2.setDirection(DIRECTION_LEFT, true);
+}
+
+void GameWindow::blinkWin()
+{
+	static bool direction = false;
+	float thickness = m_text.getOutlineThickness();
+	if(thickness <= 1 )
+		direction = true;
+	else if(thickness >= 7)
+		direction = false;
+	if(direction == false)
+		m_text.setOutlineThickness(thickness-0.15);
+	else
+		m_text.setOutlineThickness(thickness+0.15);
 }
 
 bool GameWindow::collide(Vector2f pos1, Vector2f pos2)
