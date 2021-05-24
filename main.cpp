@@ -104,6 +104,14 @@ int main(int argc, char *argv[])
 		if(winner){
 			game.drawWinner(winner);
 			game.blinkWin();
+			if(winner == 1){
+				game.chooseSmiley(HAPPY, 1);
+				game.chooseSmiley(SAD, 2);
+			}
+			else if (winner == 2){
+				game.chooseSmiley(HAPPY, 2);
+				game.chooseSmiley(SAD, 1);
+			}
 			gamePause = true;
 		}
 		game.display();

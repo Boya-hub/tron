@@ -23,6 +23,7 @@ public:
 	void setDirection(Direction direction, bool const force = false);
 	void resetPlayer();
 	Sprite getSmiley () const {return m_smileyFace.getSprite();};
+	void chooseSmiley(Faces face) { m_smileyFace.chooseSprite(face);};
 
 private:
 	unsigned int m_startPosX;

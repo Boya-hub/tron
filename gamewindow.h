@@ -21,6 +21,7 @@ public:
 	void drawWinner(unsigned int const player);
 	void resetGame();
 	void blinkWin();
+	void chooseSmiley(Faces face, unsigned int player);
 
 private:
 	unsigned int m_lenght;

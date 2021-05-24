@@ -77,6 +77,7 @@ void Player::resetPlayer()
 	circle.setOutlineThickness(1.2);	//TODO : Trouver une bonne epaisseur
 	circle.setPosition(m_startPosX, m_startPosY);
 	shapes.push_back(circle);
+	m_smileyFace.chooseSprite(NORMAL);
 }
 
 Player::~Player()

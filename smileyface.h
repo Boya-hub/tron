@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <QResource>
 
+enum Faces{NORMAL = 0, SAD, HAPPY};
+
 using namespace sf;
 
 class SmileyFace
@@ -13,6 +15,7 @@ public:
 	virtual ~SmileyFace();
 	void setPosition(unsigned int posW, unsigned int posY);
 	Sprite getSprite () const {return m_sprite;};
+	void chooseSprite(Faces face);
 
 private:
 	Texture m_texture;

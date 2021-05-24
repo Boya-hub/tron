@@ -2,8 +2,8 @@
 
 GameWindow::GameWindow(unsigned int lenght, unsigned int width, unsigned int fps, std::string name)\
 	:RenderWindow(VideoMode(lenght, width, fps), name), m_lenght(lenght), m_width(width),\
-	  m_player1(FENETRE_LENGHT/3, FENETRE_WIDTH/2, Color::Red),\
-	  m_player2((2*FENETRE_LENGHT)/3, FENETRE_WIDTH/2, Color::Blue)
+	  m_player1(FENETRE_LENGHT/3-100, FENETRE_WIDTH/2, Color::Red),\
+	  m_player2((2*FENETRE_LENGHT)/3+100, FENETRE_WIDTH/2, Color::Blue)
 {
 	//Backgroung
 	QResource bakcground_file(":/resources/sprite/background.jpg");
@@ -72,13 +72,13 @@ unsigned int GameWindow::collisionManagement()
 	for(i = 0; i < (int)m_player2.getShapes().size(); i++){
 		posPlayer2 = m_player2.getShapes()[i].getPosition();
 		if(collide(posPlayer1, posPlayer2))
-			return 1;
+			return 2;
 	}
 	//Does last circle of player 1 collide player 1
 	for(i = 0; i < (int)m_player1.getShapes().size() - 5; i++){
 		posPlayer1_tmp = m_player1.getShapes()[i].getPosition();
 		if(collide(posPlayer1, posPlayer1_tmp))
-			return 1;
+			return 2;
 	}
 
 	//Does last circle of player 2 collide player 1
@@ -86,13 +86,13 @@ unsigned int GameWindow::collisionManagement()
 	for(i = 0; i < (int)m_player1.getShapes().size(); i++){
 		posPlayer1 = m_player1.getShapes()[i].getPosition();
 		if(collide(posPlayer1, posPlayer2))
-			return 2;
+			return 1;
 	}
 	//Does last circle of player 2 collide player 2
 	for(i = 0; i < (int)m_player2.getShapes().size() - 5; i++){
 		posPlayer2_tmp = m_player2.getShapes()[i].getPosition();
 		if(collide(posPlayer2, posPlayer2_tmp))
-			return 2;
+			return 1;
 	}
 	return 0;
 }
@@ -100,9 +100,9 @@ unsigned int GameWindow::collisionManagement()
 void GameWindow::drawWinner(unsigned int const player)
 {
 	if(player == 1)
-		m_text.setFillColor(Color::Blue);
-	if(player == 2)
 		m_text.setFillColor(Color::Red);
+	if(player == 2)
+		m_text.setFillColor(Color::Blue);
 	draw(m_text);
 }
 
@@ -126,6 +126,14 @@ void GameWindow::blinkWin()
 		m_text.setOutlineThickness(thickness-0.15);
 	else
 		m_text.setOutlineThickness(thickness+0.15);
+}
+
+void GameWindow::chooseSmiley(Faces face, unsigned int player)
+{
+	if(player == 1)
+		m_player1.chooseSmiley(face);
+	else
+		m_player2.chooseSmiley(face);
 }
 
 bool GameWindow::collide(Vector2f pos1, Vector2f pos2)
